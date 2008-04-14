@@ -1,4 +1,5 @@
 
+; Ripped off from steve yegge's blog...thanks to whoever wrote it
 (defun gsub (search-string replace string &optional regexp-flag)
   "Like Ruby gsub."
   (with-temp-buffer
