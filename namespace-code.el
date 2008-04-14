@@ -47,8 +47,13 @@ returning the text originally given with the appending in place"
                         (find-function-names function-string)
                         function-string)))
 
-(defun namespace (a-namespace filename)
+(defun read-file (filename)
   (with-temp-buffer
-    (debug)
-    (create-namespace a-namespace
-                      (insert-file-contents filename nil 1000000))))
+    (insert-file-contents filename)
+    (goto-char (point-min))
+    (read (current-buffer))))
+
+(defun namespace (a-namespace filename)
+  (create-namespace a-namespace 
+                    (read-file filename)))
+
