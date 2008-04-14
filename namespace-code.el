@@ -52,10 +52,3 @@ returning the text originally given with the appending in place"
     (debug)
     (create-namespace a-namespace
                       (insert-file-contents filename nil 1000000))))
-
-
-
-
-
-
-
