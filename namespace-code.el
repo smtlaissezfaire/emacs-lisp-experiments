@@ -1,14 +1,6 @@
 
-; Ripped off from steve yegge's blog...thanks to whoever wrote it
-(defun gsub (search-string replace string &optional regexp-flag)
-  "Like Ruby gsub."
-  (with-temp-buffer
-    (insert string)
-    (goto-char (point-min))
-    (let ((search-function (if regexp-flag 're-search-forward 'search-forward)))
-      (while (funcall search-function search-string nil t)
-        (replace-match replace))
-      (buffer-string))))
+(add-to-list 'load-path ".")
+(load "./ruby.el")
 
 (defun append-in-namespace (string-namespace function-names text)
   "Given a list of function-names, append the string-namespace to each name,
@@ -52,6 +44,7 @@ returning the text originally given with the appending in place"
     (insert-file-contents filename)
     (goto-char (point-min))
     (read (current-buffer))))
+
 
 (defun namespace (a-namespace filename)
   (create-namespace a-namespace 
