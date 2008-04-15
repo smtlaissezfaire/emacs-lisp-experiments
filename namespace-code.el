@@ -39,13 +39,6 @@ returning the text originally given with the appending in place"
                         (find-function-names function-string)
                         function-string)))
 
-(defun read-file (filename)
-  (with-temp-buffer
-    (insert-file-contents filename)
-    (goto-char (point-min))
-    (read (current-buffer))))
-
-
 (defun namespace (a-namespace filename)
   (create-namespace a-namespace 
                     (read-file filename)))
