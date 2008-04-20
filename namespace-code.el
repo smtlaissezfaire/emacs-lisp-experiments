@@ -1,6 +1,7 @@
 
 (add-to-list 'load-path ".")
-(load "./ruby.el")
+(load "ruby.el")
+(load "stringify.el")
 
 (defun append-in-namespace (string-namespace function-names text)
   "Given a list of function-names, append the string-namespace to each name,
@@ -39,7 +40,14 @@ returning the text originally given with the appending in place"
                         (find-function-names function-string)
                         function-string)))
 
-(defun namespace (a-namespace filename)
+(defun namespace (a-namespace quoted-list)
   (create-namespace a-namespace 
-                    (read-file filename)))
+                    (stringify quoted-list)))
+
+(defun namespace-with-file (a-namespace filename)
+  (create-namespace a-namespace (read-file filename)))
+
+
+
+
 
