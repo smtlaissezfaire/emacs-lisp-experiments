@@ -6,7 +6,7 @@
 
 (defun undef-file-function-definitions (filename)
   "Find the function definitions in a file, and undef each one"
-  (undef-funtions 
+  (undef-functions 
    (find-function-names
     (read-file filename))))
 
