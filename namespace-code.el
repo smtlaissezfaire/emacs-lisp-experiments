@@ -1,5 +1,6 @@
 
 (add-to-list 'load-path ".")
+(load "cl.el")
 (load "ruby.el")
 (load "stringify.el")
 
@@ -35,19 +36,16 @@ returning the text originally given with the appending in place"
   (apply 'string (nthcdr num (string-to-list text))))
 
 (defun create-namespace (name-of-namespace function-string)
-  (eval
+  (eval-from-string
    (append-in-namespace (concat (symbol-name name-of-namespace) "-")
                         (find-function-names function-string)
                         function-string)))
 
-(defun namespace (a-namespace quoted-list)
-  (create-namespace a-namespace 
-                    (stringify quoted-list)))
+(defun eval-from-string (string)
+  (eval (car (read-from-string string))))
 
-(defun namespace-with-file (a-namespace filename)
-  (create-namespace a-namespace (read-file filename)))
+(defun namespace (a-namespace string)
+  (create-namespace a-namespace string))
 
-
-
-
-
+(defun namespace-file (a-namespace filename)
+  (namespace a-namespace (read-file filename)))
