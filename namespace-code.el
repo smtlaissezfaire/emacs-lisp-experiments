@@ -3,6 +3,12 @@
 (load "cl.el")
 (load "ruby.el")
 
+(defun undef-functions (list-of-functions)
+  (cond
+   ((eq list-of-functions nil) (quote ()))
+   ((fmakunbound (intern (car list-of-functions)))
+    (namespace-undef-functions (cdr list-of-functions)))))
+
 (defun append-in-namespace (string-namespace function-names text)
   "Given a list of function-names, append the string-namespace to each name,
 returning the text originally given with the appending in place"
