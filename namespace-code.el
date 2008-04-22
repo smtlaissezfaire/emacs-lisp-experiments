@@ -41,13 +41,20 @@ returning the text originally given with the appending in place"
   (apply 'string (nthcdr num (string-to-list text))))
 
 (defun create-namespace (name-of-namespace function-string)
-  (eval-from-string
-   (append-in-namespace (concat (symbol-name name-of-namespace) "-")
-                        (find-function-names function-string)
-                        function-string)))
+  (set 'complete-string
+       (append-in-namespace (concat (symbol-name name-of-namespace) "-")
+                            (find-function-names function-string)
+                            function-string))
+  (eval-string complete-string)
+  complete-string)
+  
 
-(defun eval-from-string (string)
-  (eval (car (read-from-string string))))
+(defun eval-string (string &optional start)
+  (or (numberp start) (set 'start 1))
+  (cond ((not (eq start (- (length string) 1)))
+         (set 'current-string (read-from-string string start))
+         (eval (car current-string))
+         (eval-string string (cdr current-string)))))
 
 (defun namespace (a-namespace string)
   (create-namespace a-namespace string))
