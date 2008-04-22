@@ -2,21 +2,6 @@
 (add-to-list 'load-path ".")
 (load "cl.el")
 (load "ruby.el")
-(load "stringify.el")
-
-(defun undef-file-function-definitions (filename)
-  "Find the function definitions in a file, and undef each one"
-  (undef-functions 
-   (find-function-names
-    (read-file filename))))
-
-(defun undef-functions (list-of-functions)
-  (cond
-   ((eq list-of-functions nil) (quote ()))
-   ((undef-function (car list-of-functions))
-    (undef-functions (cdr list-of-functions)))))
-
-(defalias 'undef-function 'fmakunbound)
 
 (defun append-in-namespace (string-namespace function-names text)
   "Given a list of function-names, append the string-namespace to each name,

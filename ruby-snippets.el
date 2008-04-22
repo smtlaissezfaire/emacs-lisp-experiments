@@ -1,6 +1,5 @@
-(add-to-list 'load-path ".")
-(load "namespace-code.el")
+(load "namespace.el")
 
-(namespace-file
+(namespace
  'ruby-snippet
  "./ruby-snippets-code.el")
