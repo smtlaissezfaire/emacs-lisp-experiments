@@ -1,0 +1,8 @@
+
+== Namespacing
+
+- use a macro.  Shouldn't need to create a seperate
+  file just to namespace
+- (small) bug: parameters to functions are being
+  expanded as well.  They shouldn't be expanded at all
+- load? require?  How to make paths in elisp work properly?
