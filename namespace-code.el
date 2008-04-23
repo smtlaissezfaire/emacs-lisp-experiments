@@ -17,7 +17,7 @@ returning the text originally given with the appending in place"
         ((real-append-in-namespace string-namespace function-names text))))
 
 (defun real-append-in-namespace (string-namespace function-names text)
-  (setq function-name (car function-names))
+  (setq function-name (regexp-for-first-function function-names))
   (setq rest-of-functions (cdr function-names))
   (setq new-function-name (concat string-namespace function-name))
   (append-in-namespace string-namespace
@@ -25,6 +25,12 @@ returning the text originally given with the appending in place"
                        (gsub function-name
                              new-function-name
                              text)))
+
+(defun regexp-for-first-function (functions)
+  (regexp-for-function (car functions)))
+
+(defun regexp-for-function (function-name)
+  (concat function-name " "))
 
 (defun find-function-names (text)
   "Returns a list of function names in text"
