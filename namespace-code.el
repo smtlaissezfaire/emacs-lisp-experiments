@@ -14,12 +14,17 @@
 returning the text originally given with the appending in place"
   (cond ((eq function-names ())
          text)
-        ((append-in-namespace string-namespace
-                              (cdr function-names)
-                              (gsub (car function-names)
-                                    (concat string-namespace
-                                            (car function-names))
-                                    text)))))
+        ((real-append-in-namespace string-namespace function-names text))))
+
+(defun real-append-in-namespace (string-namespace function-names text)
+  (setq function-name (car function-names))
+  (setq rest-of-functions (cdr function-names))
+  (setq new-function-name (concat string-namespace function-name))
+  (append-in-namespace string-namespace
+                       rest-of-functions
+                       (gsub function-name
+                             new-function-name
+                             text)))
 
 (defun find-function-names (text)
   "Returns a list of function names in text"
