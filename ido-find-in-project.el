@@ -30,7 +30,7 @@
 (defun recursive-find-files (directory-root)
   (with-temp-buffer
     (cd directory-root)
-    (shell-command "find . | grep -v .svn | grep -v vendor | grep .rb" (current-buffer))
+    (shell-command "find app db lib spec test | grep .rb |  grep -v .svn | grep -v vendor" (current-buffer))
     (split-string (buffer-string))))
 
 (defun find-all-files (project-root)
