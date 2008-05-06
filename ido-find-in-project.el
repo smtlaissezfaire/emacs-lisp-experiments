@@ -4,6 +4,9 @@
 ;; 2. Use an interactive fuzzy-match against a string
 ;; 3. Make it interactive, so that files can be cycled through
 
+(add-to-list 'load-path ".")
+(load "utils")
+
 (defvar project-root "~/src/svn/flavorpill/flavorpill_com/trunk")
 
 (defun fip-fuzzy-match (string list)
