@@ -9,16 +9,6 @@
 (defun fip-fuzzy-match (string list)
   (fip-match-with-regexp (explode-to-regexp string) list))
 
-(defun empty-p (list)
-  (eq list nil))
-
-(defun eql-match-p (string regexp)
-  "Tests for regexp equality"
-  (with-temp-buffer
-    (insert string)
-    (goto-char (point-min))
-    (search-forward-regexp regexp (point-max) t)))
-
 (defun fip-match-with-regexp (regexp list)
   "Return the elements of list which match the regular expression regexp"
   (remove-if-not (lambda (x) (eql-match-p list regexp)) list))
@@ -40,26 +30,6 @@
     (shell-command "find . | grep -v .svn | grep -v vendor | grep .rb" (current-buffer))
     (split-string (buffer-string))))
 
-(defun basename (file)
-  (cond ((string-with-slash-p file)
-         (basename (strip-to-slash file)))
-        (file)))
-
-(defun string-with-slash-p (string)
-  (not (eq (search "/" string) nil)))
-
-(defun strip-to-slash (string)
-  (let ((string-length (length string))
-        (string-search (search "/" string)))
-    (cond ((not (eq string-search nil))
-           (subseq string
-                   (string-offset string-search)
-                   string-length))
-          (string))))
-
-(defun string-offset (counter)
-  (+ 1 counter))
-                
 (mapcar (lambda (file) (basename file)) (recursive-find-files project-root))
 
 (defun find-all-files (project-root)
