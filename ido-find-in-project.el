@@ -30,15 +30,9 @@
     (shell-command "find . | grep -v .svn | grep -v vendor | grep .rb" (current-buffer))
     (split-string (buffer-string))))
 
-(mapcar (lambda (file) (basename file)) (recursive-find-files project-root))
-
 (defun find-all-files (project-root)
   "Find all the files in a project, and create a list of dotted pairs,
 with the complete path name as the car, and the abbreviated path name as the cdr"
   (mapcar
    (lambda (file) (list file (basename file)))
    (recursive-find-files project-root)))
-
-(find-all-files project-root)
-
-
