@@ -13,6 +13,9 @@
 (load "rails-helpers")
 
 (defun interactive-find-in-project nil
+  "If we are in a rails project, use the interactive lookup - otherwise,
+use the regular old find-file (doesn't do this, yet)"
+  (interactive)
   (defun interactive-find-in-project-prompt (prompt choices)
     "Use iswitch as a completing-read replacement to choose from
 choices.  PROMPT is a string to prompt with.  CHOICES is a list of
@@ -21,11 +24,10 @@ strings to choose from."
            (lambda ()
              (setq iswitchb-temp-buflist choices))))
       (iswitchb-read-buffer prompt)))
-
-  (lookup-and-switch-to 
-   (interactive-find-in-project-prompt "find-in-project: "
-                                       (firsts (find-files (rails-root))))))
-
+  (cond ((rails-root)
+         (lookup-and-switch-to 
+          (interactive-find-in-project-prompt "find-in-project: "
+                                              (firsts (find-files (rails-root))))))))
 (defun lookup-and-switch-to (basename)
   (defun lookup-file nil
     (car (cdr (lookup-pair))))
@@ -50,3 +52,15 @@ with the complete path name as the cdr, and the abbreviated path name as the car
 
 (defun grep-to-ignore nil
   "grep .rb | grep -v .svn | grep -v '\#'")
+
+
+;;;;;;;;;;;;;;;;;;
+;;              ;;
+;; Keymappings  ;;
+;;              ;;
+;;;;;;;;;;;;;;;;;;
+
+(global-set-key "\C-xp" 'interactive-find-in-project)
+
+   
+
