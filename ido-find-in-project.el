@@ -1,8 +1,12 @@
 ;;;; Find in project, Interactive
-;; Basic idea:
-;; 1. Set project root
-;; 2. Use an interactive fuzzy-match against a string
-;; 3. Make it interactive, so that files can be cycled through
+;; Plan: 
+;;
+;; - Set project root
+;; - Use an interactive fuzzy-match against a string
+;; - Make it interactive, so that files can be cycled through
+;;
+;; Dependencies:
+;;  iswitchb
 
 (add-to-list 'load-path ".")
 (load "utils")
