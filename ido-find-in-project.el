@@ -48,10 +48,10 @@ strings to choose from."
 with the complete path name as the cdr, and the abbreviated path name as the car"
   (mapcar
    (lambda (file) (list (basename file) file))
-   (find-all-files project-root (concat "find app spec | " (grep-to-ignore)))))
+   (find-all-files project-root (find-command))))
 
-(defun grep-to-ignore nil
-  "grep .rb | grep -v .svn | grep -v '\#'")
+(defun find-command nil
+  "find app spec test | grep .rb | grep -v .svn | grep -v '\#'")
 
 
 ;;;;;;;;;;;;;;;;;;
