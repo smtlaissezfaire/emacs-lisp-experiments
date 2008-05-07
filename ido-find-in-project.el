@@ -7,7 +7,16 @@
 (add-to-list 'load-path ".")
 (load "utils")
 
-(defvar project-root "~/src/svn/flavorpill/flavorpill_com/trunk")
+;; Define rails-root if it's not around
+(unless (functionp 'rails-root)
+  ;; Taken from rinari
+  (defun rails-root (&optional dir)
+    (or dir (setq dir default-directory))
+    (if (file-exists-p (concat dir "config/environment.rb"))
+        dir
+      (if (equal dir  "/")
+          nil
+        (rails-root (expand-file-name (concat dir "../")))))))
 
 (defun fip-fuzzy-match (string list)
   (fip-match-with-regexp (explode-to-regexp string) list))
