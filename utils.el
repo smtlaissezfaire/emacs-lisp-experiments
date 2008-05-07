@@ -1,4 +1,4 @@
-;; Lists
+; Lists
 (defun empty-p (list)
   (eq list nil))
 
