@@ -31,3 +31,7 @@
 (defun string-offset (counter)
   (+ 1 counter))
                 
+(defun firsts (list)
+  (mapcar
+   (lambda (pair) (car pair))
+   list))

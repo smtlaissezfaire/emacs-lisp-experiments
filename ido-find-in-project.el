@@ -34,11 +34,6 @@ strings to choose from."
    (interactive-find-in-project-prompt "find-in-project: "
                                        (firsts (find-files (rails-root))))))
 
-(defun firsts (list)
-  (mapcar
-   (lambda (pair) (car pair))
-   list))
-
 (defun lookup-and-switch-to (basename)
   (defun lookup-file nil
     (car (cdr (lookup-pair))))
