@@ -51,7 +51,7 @@ with the complete path name as the cdr, and the abbreviated path name as the car
    (find-all-files project-root (find-command))))
 
 (defun find-command nil
-  "find app spec test lib | grep .rb | grep -v .svn | grep -v '\#'")
+  "find app spec test lib db | grep .rb | grep -v .svn | grep -v '\#'")
 
 
 ;;;;;;;;;;;;;;;;;;
