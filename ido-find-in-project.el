@@ -57,7 +57,6 @@ with the complete path name as the cdr, and the abbreviated path name as the car
         ((project-root)
          (read (read-file ".emproj")))))
 
-
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
 ;; Keymappings  ;;
