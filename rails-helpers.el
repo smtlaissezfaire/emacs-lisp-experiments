@@ -19,4 +19,3 @@
         nil
       (project-file file (expand-file-name (concat dir "../"))))))
 
-(project-root)
