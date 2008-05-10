@@ -8,8 +8,9 @@
     (project-file *rails-environment-file*)))
 
 (defun project-root nil
-  (or (rails-root)
-      (project-file *project-file*)))
+  (or 
+   (project-file *project-file*)
+   (rails-root)))
 
 (defun project-file (file &optional dir)
   (or dir (setq dir default-directory))
