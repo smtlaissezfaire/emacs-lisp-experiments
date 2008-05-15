@@ -9,6 +9,7 @@
 ;;  iswitchb
 
 (add-to-list 'load-path ".")
+(load "cl.el")
 (load "utils")
 (load "rails-helpers")
 
@@ -24,16 +25,16 @@ strings to choose from."
            (lambda ()
              (setq iswitchb-temp-buflist choices))))
       (iswitchb-read-buffer prompt)))
-  (cond ((rails-root)
+  (cond ((project-root)
          (lookup-and-switch-to 
           (interactive-find-in-project-prompt "find-in-project: "
-                                              (firsts (find-files (rails-root))))))))
+                                              (firsts (find-files (project-root))))))))
 (defun lookup-and-switch-to (basename)
   (defun lookup-file nil
     (car (cdr (lookup-pair))))
   (defun lookup-pair nil
-    (assoc basename (find-files (rails-root))))
-  (find-file (concat (rails-root) (lookup-file))))
+    (assoc basename (find-files (project-root))))
+  (find-file (concat (project-root) (lookup-file))))
 
 (defun find-all-files (directory-root &optional shell-commandf)
   (unless shell-commandf 
@@ -51,8 +52,10 @@ with the complete path name as the cdr, and the abbreviated path name as the car
    (find-all-files project-root (find-command))))
 
 (defun find-command nil
-  "find app spec test lib db | grep .rb | grep -v .svn | grep -v '\#'")
-
+  (cond ((rails-root)
+         "find app spec test lib | grep .rb | grep -v .svn | grep -v '\#'")
+        ((project-root)
+         (read (read-file ".emproj")))))
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
