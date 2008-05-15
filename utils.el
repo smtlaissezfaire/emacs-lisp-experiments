@@ -42,4 +42,5 @@
   (beginning-of-buffer)
   (push-mark)
   (end-of-buffer)
-  (indent-region 0 (length (buffer-string))))
+  (indent-region (point-min)
+                 (point-max)))
