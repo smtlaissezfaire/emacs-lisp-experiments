@@ -55,7 +55,8 @@ with the complete path name as the cdr, and the abbreviated path name as the car
   (cond ((rails-root)
          "find app spec test lib | grep .rb | grep -v .svn | grep -v '\#'")
         ((project-root)
-         (read (read-file ".emproj")))))
+         (read (read-file 
+                (concat (project-root) ".emproj"))))))
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
