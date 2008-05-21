@@ -1,4 +1,4 @@
-; Lists
+;; Lists
 (defun empty-p (list)
   (eq list nil))
 
@@ -35,3 +35,11 @@
   (mapcar
    (lambda (pair) (car pair))
    list))
+
+;; emacs functions
+(defun indent-current-buffer nil
+  (interactive)
+  (beginning-of-buffer)
+  (push-mark)
+  (end-of-buffer)
+  (indent-region 0 (length (buffer-string))))
