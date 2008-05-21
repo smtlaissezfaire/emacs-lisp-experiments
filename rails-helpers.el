@@ -8,15 +8,17 @@
     (project-file *rails-environment-file*)))
 
 (defun project-root nil
-  (or (rails-root)
-      (project-file *project-file*)))
+  (or 
+   (project-file-root *project-file*)
+   (rails-root)))
 
-(defun project-file (file &optional dir)
+(defun project-file-root (file &optional dir)
   (or dir (setq dir default-directory))
-  (if (file-exists-p (concat dir file))
-      dir
-    (if (equal dir  "/")
-        nil
-      (project-file file (expand-file-name (concat dir "../"))))))
+  (cond ((file-exists-p (concat dir file))
+         dir)
+        ((equal dir  "/")
+         nil)
+        ((project-file file (expand-file-name (concat dir "../"))))))
 
-(project-root)
+
+
