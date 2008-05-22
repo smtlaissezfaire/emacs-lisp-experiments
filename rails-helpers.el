@@ -5,7 +5,7 @@
 (unless (functionp 'rails-root)
   ;; Taken from rinari, with a slight modification
   (defun rails-root
-    (project-file *rails-environment-file*)))
+    (project-file-root *rails-environment-file*)))
 
 (defun project-root nil
   (or 
@@ -18,7 +18,7 @@
          dir)
         ((equal dir  "/")
          nil)
-        ((project-file file (expand-file-name (concat dir "../"))))))
+        ((project-file-root file (expand-file-name (concat dir "../"))))))
 
 
 
