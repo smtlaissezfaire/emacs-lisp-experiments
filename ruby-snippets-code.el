@@ -8,7 +8,12 @@
 
 (defun ruby-snippets-debug ()
   (interactive)
-  (insert "require 'rubygems'; require 'ruby-debug'; debugger"))
+  (insert "$debug = true; require 'rubygems'; require 'ruby-debug'; debugger"))
+
+(defun ruby-snippets-debug-if ()
+  (interactive)
+  (insert "debugger if $debug == true"))
+
 
 
 ;; Switch to test ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
