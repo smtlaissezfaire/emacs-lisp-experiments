@@ -43,10 +43,11 @@ with the complete path name as the cdr, and the abbreviated path name as the car
   (defun find-all-files (directory-root &optional shell-commandf)
     (unless shell-commandf 
       (setf shell-commandf "find ."))
-    (with-temp-buffer
-      (cd directory-root)
-      (shell-command shell-commandf (current-buffer))
-      (split-string (buffer-string))))
+    (save-excursion
+      (with-temp-buffer
+        (cd directory-root)
+        (shell-command shell-commandf (current-buffer))
+        (split-string (buffer-string)))))
   (mapcar
    (lambda (file) (list (basename file) file))
    (find-all-files project-root (find-command))))
