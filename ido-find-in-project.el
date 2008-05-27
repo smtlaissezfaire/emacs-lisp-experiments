@@ -46,8 +46,8 @@ with the complete path name as the cdr, and the abbreviated path name as the car
     (save-excursion
       (with-temp-buffer
         (cd directory-root)
-        (shell-command shell-cmd (current-buffer))
-        (split-string (buffer-string)))))
+        (split-string (shell-command-to-string shell-cmd)))))
+
   (mapcar
    (lambda (file) (list (basename file) file))
    (find-all-files project-root (find-command))))
