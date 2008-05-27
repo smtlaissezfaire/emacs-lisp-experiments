@@ -16,7 +16,7 @@
 (defun interactive-find-in-project nil
   "If we are in a rails project, use the interactive lookup - otherwise,
 use the regular old find-file (doesn't do this, yet)"
-  (interactive)
+  ; taken from iswitch-b documentation
   (defun interactive-find-in-project-prompt (prompt choices)
     "Use iswitch as a completing-read replacement to choose from
 choices.  PROMPT is a string to prompt with.  CHOICES is a list of
@@ -25,6 +25,7 @@ strings to choose from."
            (lambda ()
              (setq iswitchb-temp-buflist choices))))
       (iswitchb-read-buffer prompt)))
+  (interactive)
   (cond ((project-root)
          (lookup-and-switch-to 
           (interactive-find-in-project-prompt "find-in-project: "
