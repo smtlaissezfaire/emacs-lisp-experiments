@@ -53,11 +53,11 @@ with the complete path name as the cdr, and the abbreviated path name as the car
    (find-all-files project-root (find-command))))
 
 (defun find-command nil
-  (cond ((rails-root)
-         "find . | grep '.rb\\|.rhtml' | grep -v .svn | grep -v '\#' | grep -v '\~'")
-        ((project-root)
+  (cond ((project-root)
          (read (read-file 
-                (concat (project-root) ".emproj"))))))
+                (concat (project-root) ".emproj"))))
+        ((rails-root)
+         "find . | grep '.rb\\|.rhtml' | grep -v .svn | grep -v '\#' | grep -v '\~'")))
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
